@@ -1,0 +1,10 @@
+. "$HOME/.local/bin/env"
+eval "$(starship init zsh)"
+
+# coding tools
+export PATH=$HOME/.opencode/bin:$HOME/.amp/bin:$PATH
+export SUDO_EDITOR="zed --wait"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
