@@ -2,7 +2,7 @@
 eval "$(starship init zsh)"
 
 # coding tools
-export PATH=$HOME/.opencode/bin:$HOME/.amp/bin:$PATH
+export PATH=$HOME/.opencode/bin:$HOME/.amp/bin:$HOME/projects/vaibhav/bin:$PATH
 export SUDO_EDITOR="zed --wait"
 
 export NVM_DIR="$HOME/.nvm"
