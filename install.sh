@@ -35,6 +35,10 @@ ln -sf "$DOTFILES_DIR/config/wezterm.lua" "$HOME/.wezterm.lua"
 mkdir -p "$HOME/.config/zed"
 ln -sf "$DOTFILES_DIR/config/zed/settings.json" "$HOME/.config/zed/settings.json"
 
+mkdir -p "$HOME/.config/nvim"
+ln -sf "$DOTFILES_DIR/config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
+ln -sf "$DOTFILES_DIR/config/nvim/lua" "$HOME/.config/nvim/lua"
+
 echo ""
 echo "=== Setup complete! ==="
 echo "Log out and back in for zsh to take effect."

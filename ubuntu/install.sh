@@ -47,6 +47,16 @@ if ! dpkg -l google-chrome-stable &>/dev/null; then
   rm /tmp/google-chrome.deb
 fi
 
+# --- Neovim (latest stable from GitHub) ---
+echo ">>> Installing neovim..."
+sudo apt install -y ripgrep fd-find
+NVIM_VER=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | jq -r '.tag_name')
+curl -Lo /tmp/nvim-linux64.tar.gz "https://github.com/neovim/neovim/releases/download/${NVIM_VER}/nvim-linux-x86_64.tar.gz"
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf /tmp/nvim-linux64.tar.gz
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+rm /tmp/nvim-linux64.tar.gz
+
 # --- Tailscale ---
 echo ">>> Installing Tailscale..."
 curl -fsSL https://tailscale.com/install.sh | sh
