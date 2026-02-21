@@ -57,6 +57,10 @@ sudo tar -C /opt -xzf /tmp/nvim-linux64.tar.gz
 sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 rm /tmp/nvim-linux64.tar.gz
 
+# --- btop ---
+echo ">>> Installing btop..."
+sudo apt install -y btop
+
 # --- Tailscale ---
 echo ">>> Installing Tailscale..."
 curl -fsSL https://tailscale.com/install.sh | sh

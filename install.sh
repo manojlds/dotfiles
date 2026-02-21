@@ -32,6 +32,13 @@ echo ">>> Symlinking config files..."
 ln -sf "$DOTFILES_DIR/config/zshrc" "$HOME/.zshrc"
 ln -sf "$DOTFILES_DIR/config/wezterm.lua" "$HOME/.wezterm.lua"
 
+mkdir -p "$HOME/.config/btop"
+ln -sf "$DOTFILES_DIR/config/btop/btop.conf" "$HOME/.config/btop/btop.conf"
+
+mkdir -p "$HOME/bin"
+ln -sf "$DOTFILES_DIR/config/bin/sysmon" "$HOME/bin/sysmon"
+chmod +x "$DOTFILES_DIR/config/bin/sysmon"
+
 mkdir -p "$HOME/.config/zed"
 ln -sf "$DOTFILES_DIR/config/zed/settings.json" "$HOME/.config/zed/settings.json"
 
