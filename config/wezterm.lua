@@ -93,6 +93,9 @@ wezterm.on('update-right-status', function(window, pane)
   })
 end)
 
+-- Kitty keyboard protocol (needed for oh-my-pi)
+config.enable_kitty_keyboard = true
+
 -- Scrollback
 config.scrollback_lines = 10000
 
