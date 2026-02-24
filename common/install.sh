@@ -62,3 +62,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 # --- Pi Coding Agent ---
 echo ">>> Installing pi coding agent..."
 npm install -g @mariozechner/pi-coding-agent
+
+# --- Oh My Pi ---
+echo ">>> Installing oh-my-pi..."
+bun install -g @oh-my-pi/pi-coding-agent
