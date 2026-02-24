@@ -39,6 +39,10 @@ else
   echo ">>> FiraCode Nerd Font already installed, skipping."
 fi
 
+# --- Bun ---
+echo ">>> Installing bun..."
+curl -fsSL https://bun.sh/install | bash
+
 # --- Zed Editor ---
 echo ">>> Installing Zed editor..."
 curl -fsSL https://zed.dev/install.sh | sh
@@ -54,3 +58,7 @@ curl -fsSL https://ampcode.com/install.sh | bash
 # --- Claude Code ---
 echo ">>> Installing claude code..."
 curl -fsSL https://claude.ai/install.sh | bash
+
+# --- Pi Coding Agent ---
+echo ">>> Installing pi coding agent..."
+npm install -g @mariozechner/pi-coding-agent
