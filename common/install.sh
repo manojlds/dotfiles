@@ -18,6 +18,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install --lts
 
+# --- Jujutsu (jj) ---
+echo ">>> Installing jujutsu (jj) with cargo..."
+if ! command -v cargo &>/dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
+[ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
+cargo install --locked --bin jj jj-cli
+
 # --- FiraCode Nerd Font ---
 if ! fc-list 2>/dev/null | grep -qi "FiraCode Nerd Font"; then
   echo ">>> Installing FiraCode Nerd Font..."

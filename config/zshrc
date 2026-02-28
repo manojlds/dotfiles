@@ -8,3 +8,18 @@ export SUDO_EDITOR="zed --wait"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+export PATH="$HOME/bin:$PATH"
+
+# bun completions
+[ -s "/home/manojlds/.bun/_bun" ] && source "/home/manojlds/.bun/_bun"
+
+# jujutsu (jj) completions
+if command -v jj >/dev/null 2>&1; then
+  source <(jj util completion zsh)
+fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export BROWSER="$HOME/bin/vaibhav-browser"
