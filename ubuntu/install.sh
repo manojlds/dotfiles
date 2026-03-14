@@ -23,7 +23,8 @@ sudo apt install -y \
   libxmlsec1-dev \
   libmagic-dev \
   libmagickwand-dev \
-  pandoc
+  pandoc \
+  fzf
 
 # --- Zsh ---
 echo ">>> Installing zsh..."
@@ -46,6 +47,28 @@ if ! dpkg -l google-chrome-stable &>/dev/null; then
   curl -fsSL -o /tmp/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   sudo dpkg -i /tmp/google-chrome.deb || sudo apt install -f -y
   rm /tmp/google-chrome.deb
+fi
+
+# --- Cursor (Desktop) ---
+echo ">>> Installing Cursor desktop..."
+if ! dpkg -l cursor &>/dev/null; then
+  ARCH="$(dpkg --print-architecture)"
+  case "$ARCH" in
+    amd64) CURSOR_CHANNEL="linux-x64-deb" ;;
+    arm64) CURSOR_CHANNEL="linux-arm64-deb" ;;
+    *)
+      echo ">>> Unsupported architecture for Cursor desktop: $ARCH. Skipping."
+      CURSOR_CHANNEL=""
+      ;;
+  esac
+
+  if [ -n "$CURSOR_CHANNEL" ]; then
+    curl -fsSL -o /tmp/cursor.deb "https://api2.cursor.sh/updates/download/golden/${CURSOR_CHANNEL}/cursor/latest"
+    sudo apt install -fy /tmp/cursor.deb
+    rm /tmp/cursor.deb
+  fi
+else
+  echo ">>> Cursor desktop already installed, skipping."
 fi
 
 # --- Neovim (latest stable from GitHub) ---
