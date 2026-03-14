@@ -83,3 +83,20 @@ npm install -g @mariozechner/pi-coding-agent
 # --- Oh My Pi ---
 echo ">>> Installing oh-my-pi..."
 bun install -g @oh-my-pi/pi-coding-agent
+
+# --- Local secrets template ---
+echo ">>> Preparing local secrets template..."
+SECRETS_DIR="$HOME/.config/dotfiles"
+SECRETS_FILE="$SECRETS_DIR/secrets.env"
+mkdir -p "$SECRETS_DIR"
+if [ ! -f "$SECRETS_FILE" ]; then
+  cat > "$SECRETS_FILE" <<'EOF'
+# Local secrets for shell tools (not tracked in git)
+# Fill in values and keep this file private.
+
+# export OPENAI_API_KEY=""
+# export ANTHROPIC_API_KEY=""
+# export GEMINI_API_KEY=""
+EOF
+fi
+chmod 600 "$SECRETS_FILE"
