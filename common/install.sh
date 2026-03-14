@@ -68,6 +68,14 @@ curl -fsSL https://ampcode.com/install.sh | bash
 echo ">>> Installing claude code..."
 curl -fsSL https://claude.ai/install.sh | bash
 
+# --- Cursor CLI ---
+echo ">>> Installing cursor cli..."
+curl -fsSL https://cursor.com/install | bash
+
+# --- Codex CLI ---
+echo ">>> Installing codex cli..."
+npm install -g @openai/codex
+
 # --- Pi Coding Agent ---
 echo ">>> Installing pi coding agent..."
 npm install -g @mariozechner/pi-coding-agent
