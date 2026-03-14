@@ -11,6 +11,41 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 export PATH="$HOME/bin:$PATH"
 
+# Java (Android development)
+if [ -z "${JAVA_HOME:-}" ]; then
+  case "$(uname -s)" in
+    Darwin)
+      if [ -d "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home" ]; then
+        export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+      elif [ -d "/usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home" ]; then
+        export JAVA_HOME="/usr/local/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+      elif [ -x "/usr/libexec/java_home" ]; then
+        export JAVA_HOME="$("/usr/libexec/java_home" -v 17 2>/dev/null || "/usr/libexec/java_home" 2>/dev/null || true)"
+      fi
+      ;;
+    Linux)
+      if [ -d "/usr/lib/jvm/java-17-openjdk-amd64" ]; then
+        export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+      elif [ -d "/usr/lib/jvm/java-17-openjdk-arm64" ]; then
+        export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-arm64"
+      elif [ -d "/usr/lib/jvm/java-17-openjdk" ]; then
+        export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+      elif command -v javac >/dev/null 2>&1; then
+        export JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v javac)")")")"
+      fi
+      ;;
+  esac
+fi
+
+if [ -n "${JAVA_HOME:-}" ]; then
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+# Android SDK
+export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+
 # bun completions
 [ -s "/home/manojlds/.bun/_bun" ] && source "/home/manojlds/.bun/_bun"
 

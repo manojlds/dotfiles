@@ -16,6 +16,7 @@ brew install \
   git \
   gh \
   tmux \
+  openjdk@17 \
   openssl \
   libxmlsec1 \
   imagemagick \
