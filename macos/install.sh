@@ -27,6 +27,7 @@ brew install \
 echo ">>> Installing cask apps..."
 brew install --cask \
   wezterm \
+  cursor \
   google-chrome \
   tailscale
 
