@@ -34,27 +34,55 @@ return {
         capabilities = vim.tbl_deep_extend("force", capabilities, cmp_lsp.default_capabilities())
       end
 
+      local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = { version = "LuaJIT" },
+              diagnostics = { globals = { "vim" } },
+              workspace = { checkThirdParty = false },
+            },
+          },
+        },
+        pyright = {},
+        ts_ls = {},
+      }
+
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "ts_ls" },
-        handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup({ capabilities = capabilities })
-          end,
-          lua_ls = function()
-            require("lspconfig").lua_ls.setup({
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  runtime = { version = "LuaJIT" },
-                  diagnostics = { globals = { "vim" } },
-                  workspace = { checkThirdParty = false },
-                },
-              },
-            })
-          end,
-        },
+        ensure_installed = vim.tbl_keys(servers),
+        -- Keep this false so older/newer Neovim combos don't explode in mason-lspconfig.
+        automatic_enable = false,
       })
+
+      local has_new_lsp_api = vim.lsp
+        and vim.lsp.config ~= nil
+        and type(vim.lsp.enable) == "function"
+
+      local lspconfig = nil
+
+      for server_name, server_opts in pairs(servers) do
+        local opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, server_opts or {})
+
+        if has_new_lsp_api then
+          vim.lsp.config(server_name, opts)
+          vim.lsp.enable(server_name)
+        else
+          lspconfig = lspconfig or require("lspconfig")
+
+          local legacy_name = server_name
+          -- Older lspconfig used tsserver instead of ts_ls.
+          if server_name == "ts_ls" and not lspconfig.ts_ls and lspconfig.tsserver then
+            legacy_name = "tsserver"
+          end
+
+          if lspconfig[legacy_name] then
+            lspconfig[legacy_name].setup(opts)
+          else
+            vim.notify(("LSP server config not found: %s"):format(legacy_name), vim.log.levels.WARN)
+          end
+        end
+      end
     end,
   },
 
