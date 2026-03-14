@@ -74,3 +74,10 @@ fi
 # --- Tailscale ---
 echo ">>> Installing Tailscale..."
 curl -fsSL https://tailscale.com/install.sh | sh
+
+# --- Beszel Hub (official binary install script) ---
+echo ">>> Installing Beszel Hub (official script)..."
+curl -sL https://get.beszel.dev/hub -o /tmp/install-hub.sh
+chmod +x /tmp/install-hub.sh
+sudo /tmp/install-hub.sh
+rm -f /tmp/install-hub.sh
