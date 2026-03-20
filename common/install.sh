@@ -48,6 +48,10 @@ else
   echo ">>> FiraCode Nerd Font already installed, skipping."
 fi
 
+# --- mise ---
+echo ">>> Installing mise..."
+curl https://mise.run | sh
+
 # --- Bun ---
 echo ">>> Installing bun..."
 curl -fsSL https://bun.sh/install | bash
@@ -79,10 +83,6 @@ npm install -g @openai/codex
 # --- Pi Coding Agent ---
 echo ">>> Installing pi coding agent..."
 npm install -g @mariozechner/pi-coding-agent
-
-# --- Oh My Pi ---
-echo ">>> Installing oh-my-pi..."
-bun install -g @oh-my-pi/pi-coding-agent
 
 # --- Local secrets template ---
 echo ">>> Preparing local secrets template..."
