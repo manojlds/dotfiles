@@ -48,6 +48,27 @@ else
   echo ">>> FiraCode Nerd Font already installed, skipping."
 fi
 
+# --- Nix + devenv ---
+echo ">>> Installing nix..."
+if ! command -v nix-env &>/dev/null; then
+  sh <(curl -L https://nixos.org/nix/install) --daemon
+fi
+
+export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+
+echo ">>> Installing devenv..."
+if ! command -v devenv &>/dev/null; then
+  if command -v nix-env &>/dev/null; then
+    nix-env --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+  elif [ -x /nix/var/nix/profiles/default/bin/nix-env ]; then
+    /nix/var/nix/profiles/default/bin/nix-env --install --attr devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+  else
+    echo ">>> nix-env not available yet. Open a new shell and re-run install.sh to install devenv."
+  fi
+else
+  echo ">>> devenv already installed, skipping."
+fi
+
 # --- mise ---
 echo ">>> Installing mise..."
 curl https://mise.run | sh
