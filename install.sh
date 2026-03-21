@@ -39,6 +39,15 @@ mkdir -p "$HOME/bin"
 ln -sf "$DOTFILES_DIR/config/bin/sysmon" "$HOME/bin/sysmon"
 chmod +x "$DOTFILES_DIR/config/bin/sysmon"
 
+# systemd user environment (mise shims for services like process-compose)
+mkdir -p "$HOME/.config/environment.d"
+ln -sf "$DOTFILES_DIR/config/environment.d/50-mise.conf" "$HOME/.config/environment.d/50-mise.conf"
+
+# Ensure mise shims in ~/.profile for login shells
+if ! grep -q 'mise/shims' "$HOME/.profile" 2>/dev/null; then
+  printf '\n# mise shims for runtime-managed tools\nif [ -d "$HOME/.local/share/mise/shims" ] ; then\n    PATH="$HOME/.local/share/mise/shims:$PATH"\nfi\n' >> "$HOME/.profile"
+fi
+
 mkdir -p "$HOME/.config/zed"
 ln -sf "$DOTFILES_DIR/config/zed/settings.json" "$HOME/.config/zed/settings.json"
 
