@@ -25,7 +25,8 @@ sudo apt install -y \
   libmagic-dev \
   libmagickwand-dev \
   pandoc \
-  fzf
+  fzf \
+  inotify-tools
 
 # --- Zsh ---
 echo ">>> Installing zsh..."
