@@ -19,7 +19,7 @@ sudo apt install -y \
   tmux \
   unzip \
   openjdk-17-jdk \
-  postgresql-client-16 \
+  postgresql-client \
   libssl-dev \
   libxmlsec1-dev \
   libmagic-dev \
