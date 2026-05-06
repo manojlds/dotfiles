@@ -53,7 +53,10 @@ ln -sf "$DOTFILES_DIR/config/zed/settings.json" "$HOME/.config/zed/settings.json
 
 mkdir -p "$HOME/.config/nvim"
 ln -sf "$DOTFILES_DIR/config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-ln -sf "$DOTFILES_DIR/config/nvim/lua" "$HOME/.config/nvim/lua"
+if [ -e "$HOME/.config/nvim/lua" ] && [ ! -L "$HOME/.config/nvim/lua" ]; then
+  rm -rf "$HOME/.config/nvim/lua"
+fi
+ln -sfn "$DOTFILES_DIR/config/nvim/lua" "$HOME/.config/nvim/lua"
 
 echo ""
 echo "=== Setup complete! ==="
