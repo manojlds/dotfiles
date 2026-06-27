@@ -97,6 +97,10 @@ curl -fsSL https://claude.ai/install.sh | bash
 echo ">>> Installing cursor cli..."
 curl -fsSL https://cursor.com/install | bash
 
+# --- Herdr ---
+echo ">>> Installing herdr..."
+curl -fsSL https://herdr.dev/install.sh | sh
+
 # --- Codex CLI ---
 echo ">>> Installing codex cli..."
 npm install -g @openai/codex
