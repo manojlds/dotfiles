@@ -97,6 +97,10 @@ curl -fsSL https://claude.ai/install.sh | bash
 echo ">>> Installing cursor cli..."
 curl -fsSL https://cursor.com/install | bash
 
+# --- Antigravity CLI ---
+echo ">>> Installing antigravity cli..."
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+
 # --- Herdr ---
 echo ">>> Installing herdr..."
 curl -fsSL https://herdr.dev/install.sh | sh
@@ -108,6 +112,10 @@ npm install -g @openai/codex
 # --- Pi Coding Agent ---
 echo ">>> Installing pi coding agent..."
 npm install -g @mariozechner/pi-coding-agent
+
+# --- Cline ---
+echo ">>> Installing cline..."
+npm install -g cline
 
 # --- Local secrets template ---
 echo ">>> Preparing local secrets template..."
