@@ -87,15 +87,6 @@ rm /tmp/nvim-linux64.tar.gz
 echo ">>> Installing btop..."
 sudo apt install -y btop
 
-# --- RustDesk ---
-echo ">>> Installing RustDesk..."
-if ! dpkg -l rustdesk &>/dev/null; then
-  RUSTDESK_VER=$(curl -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.tag_name')
-  curl -Lo /tmp/rustdesk.deb "https://github.com/rustdesk/rustdesk/releases/download/${RUSTDESK_VER}/rustdesk-${RUSTDESK_VER}-x86_64.deb"
-  sudo apt install -fy /tmp/rustdesk.deb
-  rm /tmp/rustdesk.deb
-fi
-
 # --- Tailscale ---
 echo ">>> Installing Tailscale..."
 curl -fsSL https://tailscale.com/install.sh | sh
