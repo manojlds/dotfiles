@@ -113,10 +113,6 @@ echo ">>> Installing pi coding agent..."
 npm uninstall -g @mariozechner/pi-coding-agent
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 
-# --- Cline ---
-echo ">>> Installing cline..."
-npm install -g cline
-
 # --- Local secrets template ---
 echo ">>> Preparing local secrets template..."
 SECRETS_DIR="$HOME/.config/dotfiles"
