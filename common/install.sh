@@ -110,7 +110,6 @@ npm install -g @openai/codex
 
 # --- Pi Coding Agent ---
 echo ">>> Installing pi coding agent..."
-npm uninstall -g @mariozechner/pi-coding-agent
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 
 # --- Local secrets template ---
