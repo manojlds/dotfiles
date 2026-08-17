@@ -104,6 +104,10 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 echo ">>> Installing herdr..."
 curl -fsSL https://herdr.dev/install.sh | sh
 
+# --- Hermes Agent ---
+echo ">>> Installing Hermes agent..."
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+
 # --- Codex CLI ---
 echo ">>> Installing codex cli..."
 npm install -g @openai/codex
