@@ -25,6 +25,18 @@ echo ""
 echo ">>> Running common setup..."
 bash "$DOTFILES_DIR/common/install.sh"
 
+# Herdr server (Linux systemd user service)
+if [ "$PLATFORM" = "ubuntu" ]; then
+  echo ""
+  echo ">>> Configuring Herdr user service..."
+  mkdir -p "$HOME/.config/systemd/user"
+  ln -sfn "$DOTFILES_DIR/config/systemd/user/herdr.service" \
+    "$HOME/.config/systemd/user/herdr.service"
+  systemctl --user daemon-reload
+  systemctl --user enable --now herdr.service
+  sudo loginctl enable-linger "$USER"
+fi
+
 # Symlink dotfiles
 echo ""
 echo ">>> Symlinking config files..."
